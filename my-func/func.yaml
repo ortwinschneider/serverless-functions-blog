@@ -3,7 +3,7 @@ name: my-func
 runtime: quarkus
 registry: image-registry.openshift-image-registry.svc:5000/knative-functions-demo
 image: image-registry.openshift-image-registry.svc:5000/knative-functions-demo/my-func:latest
-imageDigest: sha256:80f5dc8805cac5ab5f5e36e6120c84d1cfe53c30fdb741abdee18c270cfecbad
+imageDigest: sha256:3aca2d8a9618fb125b70c2d1616f8c41d458a8b66e08c8d3134d1b65ad4ca1a0
 created: 2023-01-31T09:18:52.665817+01:00
 invocation:
   format: cloudevent
@@ -25,12 +25,14 @@ build:
 run:
   volumes: []
   envs:
-  - name: DATA
-    value: Hello Ortwin
+  - name: app.ce.path
+    value: /cloud-events/
 deploy:
   namespace: knative-functions-demo
   annotations: {}
-  options: {}
+  options:
+    scale:
+      min: 2
   labels: []
   healthEndpoints:
     liveness: /health/liveness

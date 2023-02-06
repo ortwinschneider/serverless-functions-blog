@@ -53,7 +53,7 @@ spec:
               port: 0
           name: user-container
           volumeMounts:
-            - mountPath: /data
+            - mountPath: /cloud-events
               name: my-func-data
               readOnly: false
           readinessProbe:
